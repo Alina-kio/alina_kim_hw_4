@@ -22,6 +22,7 @@ public class Main {
         roundNumber++; // roundNumber = roundNumber + 1
         chooseBossDefence();
         bossHits();
+        heroesGolem();
         heroesHit();
         medicHeals();
         printStatistics();
