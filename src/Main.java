@@ -2,12 +2,14 @@ import java.util.Random;
 
 public class Main {
     public static int bossHealth = 600;
-    public static int bossDamage = 50;
+    public static int bossDamage = 20;
     public static String bossDefence;
-    public static int[] heroesHealth = {280, 270, 250, 300};
-    public static int[] heroesDamage = {10, 15, 20, 0};
-    public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic", "Medic"};
+    public static int[] heroesHealth = {280, 270, 250, 250, 300};
+    public static int[] heroesDamage = {10, 15, 20, 5, 0};
+    public static String[] heroes = {"Knight", "Magician", "Kinetic", "Golem", "Medic"};
+    public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic", "Weak physical blow", "Healing"};
     public static int roundNumber;
+
 
     public static void main(String[] args) {
         printStatistics();
@@ -26,6 +28,14 @@ public class Main {
 
     }
 
+
+    public static void heroesGolem(){
+        for (int i = 0; i < heroes.length; i++) {
+            if (heroes[i] == "Golem"){
+                heroesHealth[i] = heroesHealth[i] + (bossDamage/5);
+            }
+        }
+    }
 
     public static void medicHeals(){
         for (int i = 0; i < heroesHealth.length - 1; i++) {
@@ -54,7 +64,7 @@ public class Main {
                 if (heroesHealth[i] - bossDamage < 0) {
                     heroesHealth[i] = 0;
                 } else {
-                    heroesHealth[i] = heroesHealth[i] - bossDamage;
+                    heroesHealth[i] = heroesHealth[i] - bossDamage + (bossDamage/5);
                 }
             }
         }
@@ -111,8 +121,8 @@ public class Main {
         System.out.println("Boss health: " + bossHealth + " damage: " + bossDamage
                 + " defence: " + (bossDefence != null ? bossDefence : "No defence"));
         for (int i = 0; i < heroesHealth.length; i++) {
-            System.out.println(heroesAttackType[i] + " health: " + heroesHealth[i]
-                    + " damage: " + heroesDamage[i]);
+            System.out.println(heroes[i] + ", " + heroesAttackType[i] + ", health: " + heroesHealth[i]
+                    + ", damage: " + heroesDamage[i]);
         }
     }
 }
